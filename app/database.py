@@ -35,7 +35,7 @@ URL_DATABASE = os.getenv("DATABASE_URL")
 
 # If empty, use a hardcoded value as fallback (for development only)
 if not URL_DATABASE:
-    URL_DATABASE = "mysql+aiomysql://root:WAVXSeQyJbIsalRxOmmVGhuBprXQlvWj@mysql.railway.internal:3306/railway"
+    URL_DATABASE = "mysql+aiomysql://root:coIfpaReRCOgIwBatHtKGoEkuvfEdCsd@mysql.railway.internal:3306/railway"
 
 # Create engine and session
 engine = create_async_engine(URL_DATABASE, echo=True)
