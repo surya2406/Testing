@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
+URL_DATABASE=os.getenv("URL_DATABASE")
 engine=create_async_engine(URL_DATABASE,echo=True)
 async_session=sessionmaker(engine,class_=AsyncSession,expire_on_commit=False)
 
