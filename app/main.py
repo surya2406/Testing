@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.auth import create_access_token,OAuth2PasswordRequestForm,bcrypt_context
 from dotenv import load_dotenv
 import os
+from prometheus_fastapi_instrumentator import Instrumentator
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+Instrumentator().instrument(app).expose(app)
 app.include_router(product_router)
 app.include_router(authrouter)
 

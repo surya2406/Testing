@@ -10,3 +10,4 @@ fastapi-cache2
 python-dotenv
 aiomysql
 python-multipart
+prometheus-fastapi-instrumentator
