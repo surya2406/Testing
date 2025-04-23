@@ -56,14 +56,14 @@ async def signup(user:CreateUserRequest,db:AsyncSession=Depends(get_db)):
     return {"Message":"User created successfully!"}
 
 @app.post("/login")
-async def login(form_data:OAuth2PasswordRequestForm=Depends(),db:AsyncSession=Depends(get_db)):
+async def login(form_data:OAuth2PasswordRequestForm=Depends(), db:AsyncSession=Depends(get_db)):
     query=select(User).where(User.username==form_data.username)
     result=await db.execute(query)
     user=result.scalar_one_or_none()
-    if not user or not bcrypt_context.verify(form_data.password,user.hashed_password):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Invalid username or password")
-    access_token=create_access_token(user.username,user.id, timedelta(minutes=30))
-    return access_token
+    if not user or not bcrypt_context.verify(form_data.password, user.hashed_password):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid username or password")
+    access_token=create_access_token(user.username, user.user_id, timedelta(minutes=30))
+    return {'access_token': access_token, 'token_type': 'bearer'}
 
 
 if __name__ == "__main__":
